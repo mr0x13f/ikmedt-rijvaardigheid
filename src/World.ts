@@ -23,7 +23,7 @@ export module World {
     function update() {
         
         for (let entity of entities)
-            entity.update();
+            entity.doUpdate();
 
     }
 

@@ -12,7 +12,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { Entity } from "./Entity";
-import { World } from "./World";
+import { Vector3 } from "./Vector3";
 var Car = /** @class */ (function (_super) {
     __extends(Car, _super);
     function Car() {
@@ -20,7 +20,8 @@ var Car = /** @class */ (function (_super) {
     }
     Car.prototype.update = function () {
         var SPEED = 5; // meter per seconde
-        this.object3D.position.z -= SPEED * World.dt;
+        var DIRECTION = new Vector3(0, 0, -1); // richting
+        this.velocity = DIRECTION.mulNum(SPEED);
     };
     return Car;
 }(Entity));

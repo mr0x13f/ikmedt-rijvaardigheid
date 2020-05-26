@@ -16,7 +16,7 @@ export var World;
     function update() {
         for (var _i = 0, entities_1 = entities; _i < entities_1.length; _i++) {
             var entity = entities_1[_i];
-            entity.update();
+            entity.doUpdate();
         }
     }
     function addEntity(entity) {

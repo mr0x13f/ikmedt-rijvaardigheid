@@ -1,12 +1,14 @@
 import { Entity } from "./Entity";
 import { World } from "./World";
+import { Vector3 } from "./Vector3";
 
 export class Car extends Entity {
 
     public update() {
 
         const SPEED = 5; // meter per seconde
-        this.object3D.position.z -= SPEED * World.dt;
+        const DIRECTION = new Vector3(0,0,-1); // richting
+        this.velocity = DIRECTION.mulNum(SPEED);
 
     }
 
