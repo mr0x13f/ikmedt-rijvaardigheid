@@ -11,9 +11,13 @@ export abstract class Entity {
     public rotation:Vector3;    // Rotatie in graden euler angles
     public velocity:Vector3;    // Snelheid in meters per seconde
 
+    // Hooks voor subclasses
+    public update() {}
+    public init() {}
+
     constructor(id:string|null) {
 
-        if (id) { // Koppelt de entity aan een bepaalde id
+        if (id) { // Koppelt de entity aan een bepaalde HTML element
             this.id = id;
             this.element = <HTMLElement> document.getElementById(id);
             this.object3D = (<any>this.element).object3D;
@@ -37,7 +41,8 @@ export abstract class Entity {
         }
 
         World.addEntity(this); // Registreert deze entity in de World
-
+        
+        this.init();
     }
 
     // Wordt elke frame (60hz) uitgevoerd
@@ -57,7 +62,5 @@ export abstract class Entity {
         this.object3D.rotation.z = this.rotation.z;
 
     }
-
-    public update() {}
 
 }
