@@ -4,10 +4,10 @@ export class Vector3 {
     public y:number=0;
     public z:number=0;
 
-    constructor(x:number, y:number, z:number) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+    constructor(x?:number, y?:number, z?:number) {
+        this.x = x || 0;
+        this.y = y || x || 0;
+        this.z = z || x || 0;
     }
 
     // Vector3 + Vector3
