@@ -15,11 +15,8 @@ import { Entity } from "./Entity";
 import { World } from "./World";
 var Car = /** @class */ (function (_super) {
     __extends(Car, _super);
-    function Car(id) {
-        var _this = _super.call(this) || this;
-        _this.element = document.getElementById(id);
-        _this.object3D = _this.element.object3D;
-        return _this;
+    function Car() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     Car.prototype.update = function () {
         var SPEED = 5; // meter per seconde
