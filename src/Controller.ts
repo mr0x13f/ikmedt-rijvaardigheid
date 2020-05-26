@@ -2,30 +2,37 @@ import {World} from "./World";
 
 export class Controller {
 
-    public gamepad: Gamepad | null;
-    public axes: readonly number[] | null;
-    public buttons: readonly GamepadButton[] | null;
+    public id: string | null
+    public gamepads: (Gamepad | null)[] = navigator.getGamepads();
 
-    constructor(gp:Gamepad | null) {
-        this.gamepad = gp;
-        this.axes = null;
-        this.buttons = null;
-        if(gp != null) {
-            this.axes = gp.axes
-            this.buttons = gp.buttons;
-        }
+    constructor(id: string) {
+        this.id = id;
         World.attachController(this);
-
     }
 
     disconnect() {
         World.detachController(this);
     }
 
+    updateStatus() {
+        for(let g in this.gamepads) {
+            // @ts-ignore
+            let gamepad:Gamepad = <Gamepad> g; //Somehow believes g is a string.
+            if(gamepad.id == this.id) {
+                return gamepad;
+            }
+        }
+    }
+
     update() {
-        if(this.gamepad != null) {
-            const AXES = this.gamepad.axes;
-            const BUTTONS = this.gamepad.buttons;
+        let gamepad = this.updateStatus()
+        if(gamepad != null) {
+            if(gamepad.axes[0] > 0.5) {
+                console.log("rechts!");
+            }
+            else if(gamepad.axes[0] < -0.5) {
+                console.log("links!");
+            }
         }
     }
 }
