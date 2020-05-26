@@ -6,6 +6,6 @@ window.onload = () => {
     // Start de simulatie
     World.init();
 
-    let car:Car = new Car("car"); // Verbind een Car entity aan #car
+    let car:Car = new Car("js--car"); // Verbind een Car entity aan #car
 
 }
