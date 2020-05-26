@@ -1,11 +1,10 @@
 import { Entity } from "./Entity";
 import { World } from "./World";
-import { IObject3D } from "./IObject3D";
 
 export class Car extends Entity {
 
     private element:HTMLElement;
-    private object3D:IObject3D;
+    private object3D:any;
 
     constructor(id:string) {
         super()
