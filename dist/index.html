@@ -13,13 +13,18 @@
                 <img id="textures/dev2" src="assets/textures/dev_measuregeneric01b.png" alt="">
             </a-assets>
 
-            <a-plane
-                material="src:#textures/dev2; repeat: 5 1000"
-                position="0 0 0"
-                rotation="-90 0 0"
-                width="5" height="1000"
-                ></a-plane>
+            <!-- Schaduw kleur -->
+            <a-entity
+                light="type: ambient; color: #333"
+                ></a-entity>
 
+            <!-- Zon -->
+            <a-entity
+                light="type: directional; color: #FFF; intensity: 0.1"
+                position="0.7 0.4 -1"
+                ></a-entity>
+
+            <!-- Auto -->
             <a-entity
                 id="js--car"
                 position="0 0 0"
@@ -41,6 +46,15 @@
                     ></a-camera>
 
             </a-entity>
+
+
+
+            <a-plane
+                material="src:#textures/dev2; repeat: 5 1000"
+                position="0 0 0"
+                rotation="-90 0 0"
+                width="5" height="1000"
+                ></a-plane>
 
         </a-scene>
     </body>
