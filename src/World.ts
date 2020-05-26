@@ -1,4 +1,5 @@
 import { Entity } from "./Entity";
+import {Controller} from "./Controller";
 
 export module World {
 
@@ -8,6 +9,7 @@ export module World {
 
     let entities:Entity[] = [];          // Alle entities
     let idMap:{[id:string]:Entity} = {}; // Wordt gebruikt door getEntityById()
+    let controllers:Controller[] = [];
 
     export function init() {
 
@@ -21,6 +23,9 @@ export module World {
         for (let entity of entities)
             entity.doUpdate();
 
+        for(let controller of controllers)
+            controller.update();
+
     }
 
     export function addEntity(entity:Entity) {
@@ -28,6 +33,17 @@ export module World {
 
         if (entity.id)
             idMap[entity.id] = entity;
+    }
+
+    export function attachController(controller:Controller) {
+        controllers.push(controller);
+    }
+
+    export function detachController(controller:Controller) {
+        const index = controllers.indexOf(controller, 0);
+        if (index > -1) {
+            controllers.splice(index, 1);
+        }
     }
 
     export function getEntityById(id:string): Entity {
