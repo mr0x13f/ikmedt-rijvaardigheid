@@ -9,6 +9,7 @@ var Entity = /** @class */ (function () {
             this.id = id;
             this.element = document.getElementById(id);
             this.object3D = this.element.object3D;
+            // Pak de a-frame positie en rotatie
             this.position = new Vector3(this.object3D.position.x, this.object3D.position.y, this.object3D.position.z);
             this.rotation = new Vector3(this.object3D.rotation.x, this.object3D.rotation.y, this.object3D.rotation.z);
             this.velocity = new Vector3(0, 0, 0);

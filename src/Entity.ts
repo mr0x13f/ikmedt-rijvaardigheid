@@ -7,9 +7,9 @@ export abstract class Entity {
     public object3D:any|null = null;           // De a-frame "object3D" van het element
     public id:string|null = null               // De id van het element
 
-    public position:Vector3;
-    public rotation:Vector3;
-    public velocity:Vector3;
+    public position:Vector3;    // Positie in meters
+    public rotation:Vector3;    // Rotatie in graden euler angles
+    public velocity:Vector3;    // Snelheid in meters per seconde
 
     constructor(id:string|null) {
 
@@ -18,11 +18,11 @@ export abstract class Entity {
             this.element = <HTMLElement> document.getElementById(id);
             this.object3D = (<any>this.element).object3D;
 
+            // Pak de a-frame positie en rotatie
             this.position = new Vector3(
                 this.object3D.position.x,
                 this.object3D.position.y,
                 this.object3D.position.z );
-
             this.rotation = new Vector3(
                 this.object3D.rotation.x,
                 this.object3D.rotation.y,

@@ -4,11 +4,7 @@ export module World {
 
     export let dt:number; // De tijd in s tussen de laatste frame.
     // World.dt gebruikt worden om waardes per seconde te updaten
-    // FOUT:  positie.x += 10
-    // ^ Dit veranderd te positie met 10 per FRAME
-    // Als de framerate veranderd wordt het dus langzamer
-    // GOED:  positie.x += 10 * World.dt
-    // ^ Dit zorgt ervoor dat het per seconde is
+    // bijv 50 * World.dt wordt 50 per seconde
 
     let entities:Entity[] = [];          // Alle entities
     let idMap:{[id:string]:Entity} = {}; // Wordt gebruikt door getEntityById()

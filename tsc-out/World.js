@@ -1,11 +1,7 @@
 export var World;
 (function (World) {
     // World.dt gebruikt worden om waardes per seconde te updaten
-    // FOUT:  positie.x += 10
-    // ^ Dit veranderd te positie met 10 per FRAME
-    // Als de framerate veranderd wordt het dus langzamer
-    // GOED:  positie.x += 10 * World.dt
-    // ^ Dit zorgt ervoor dat het per seconde is
+    // bijv 50 * World.dt wordt 50 per seconde
     var entities = []; // Alle entities
     var idMap = {}; // Wordt gebruikt door getEntityById()
     function init() {
