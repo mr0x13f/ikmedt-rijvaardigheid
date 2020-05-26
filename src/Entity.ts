@@ -4,10 +4,12 @@ export abstract class Entity {
 
     public element:HTMLElement|null = null;    // Het HTML element waar de entity aan verbonden is
     public object3D:any|null = null;           // De a-frame "object3D" van het element
+    public id:string|null = null               // De id van het element
 
     constructor(id:string|null) {
 
         if (id) { // Koppelt de entity aan een bepaalde id
+            this.id = id;
             this.element = <HTMLElement> document.getElementById(id);
             this.object3D = (<any>this.element).object3D;
         }

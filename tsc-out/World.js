@@ -6,9 +6,9 @@ export var World;
     // Als de framerate veranderd wordt het dus langzamer
     // GOED:  positie.x += 10 * World.dt
     // ^ Dit zorgt ervoor dat het per seconde is
-    var entities; // Alle entities
+    var entities = []; // Alle entities
+    var idMap = {}; // Wordt gebruikt door getEntityById()
     function init() {
-        entities = [];
         loop();
     }
     World.init = init;
@@ -21,8 +21,14 @@ export var World;
     }
     function addEntity(entity) {
         entities.push(entity);
+        if (entity.id)
+            idMap[entity.id] = entity;
     }
     World.addEntity = addEntity;
+    function getEntityById(id) {
+        return idMap[id];
+    }
+    World.getEntityById = getEntityById;
     // Dit zorgt ervoor dat update() elke frame (bijv 60x per sec) wordt aangeroepen
     function loop() {
         var lastTime = 0;

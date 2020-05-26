@@ -10,11 +10,11 @@ export module World {
     // GOED:  positie.x += 10 * World.dt
     // ^ Dit zorgt ervoor dat het per seconde is
 
-    let entities:Entity[]; // Alle entities
+    let entities:Entity[] = [];          // Alle entities
+    let idMap:{[id:string]:Entity} = {}; // Wordt gebruikt door getEntityById()
 
     export function init() {
 
-        entities = [];
         loop();
 
     }
@@ -29,6 +29,13 @@ export module World {
 
     export function addEntity(entity:Entity) {
         entities.push(entity);
+
+        if (entity.id)
+            idMap[entity.id] = entity;
+    }
+
+    export function getEntityById(id:string): Entity {
+        return idMap[id];
     }
 
     // Dit zorgt ervoor dat update() elke frame (bijv 60x per sec) wordt aangeroepen
