@@ -1,5 +1,4 @@
 import { Entity } from "./Entity";
-import { World } from "./World";
 import { Vector3 } from "./Vector3";
 
 export class Car extends Entity {
