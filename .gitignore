@@ -1,1 +1,3 @@
 tsc-out/
+.idea
+node_modules
