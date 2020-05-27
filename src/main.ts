@@ -8,6 +8,7 @@ window.onload = () => { window.requestAnimationFrame( () => {
     World.init();
 
     let car:Car = new Car("js--car"); // Verbind een Car entity aan #car
+    car.setHeadlights(false);
 
     let sky:Sky = new Sky("js--sky");
     sky.setSky(SkyType.DAY);

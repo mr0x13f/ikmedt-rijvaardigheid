@@ -30,11 +30,21 @@ export class Car extends Entity {
 
     public toggleHeadlights() {
         this.isHeadlightsOn = !this.isHeadlightsOn;
+        this.updateHeadlights();
+    }
+
+    public setHeadlights(enable:boolean) {
+        this.isHeadlightsOn = enable;
+        this.updateHeadlights();
+    }
+
+    private updateHeadlights() {
 
         if (this.headlightLeft != null)
             this.headlightLeft.setAttribute("visible", ""+this.isHeadlightsOn);
         if (this.headlightRight != null)
             this.headlightRight.setAttribute("visible", ""+this.isHeadlightsOn);
+
     }
 
 }
