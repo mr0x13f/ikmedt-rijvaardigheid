@@ -60,6 +60,13 @@
                 >
 
                 <a-entity
+                    position="0 0 0"
+                    obj-model="obj: #skyline-obj;"
+                    scale="0.02 0.02 0.02"
+                    rotation="0 180 0"
+                    ></a-entity>
+
+                <a-entity
                     id="js--car-headlight-left"
                     position="-0.5 0.5 -1"
                     light="type: spot"
@@ -76,8 +83,6 @@
                     wasd-controls-enabled=false
                     ></a-camera>
             </a-entity>
-
-
 
             <a-plane
                 material="src:#textures/dev2; repeat: 5 1000"
