@@ -13,16 +13,44 @@
                 <img id="textures/dev2" src="assets/textures/dev_measuregeneric01b.png" alt="">
             </a-assets>
 
-            <!-- Schaduw kleur -->
-            <a-entity
-                light="type: ambient; color: #333"
-                ></a-entity>
 
-            <!-- Zon -->
-            <a-entity
-                light="type: directional; color: #FFF; intensity: 0.1"
-                position="0.7 0.4 -1"
-                ></a-entity>
+            <a-entity id="js--sky" >
+
+                <a-entity id="js--sky-day">
+
+                    <a-entity
+                        light="type: ambient; color: #666"
+                        ></a-entity>
+
+                    <a-entity
+                        light="type: directional; color: #FFF; intensity: 2"
+                        position="0.7 0.4 -1"
+                        ></a-entity>
+
+                    <a-sky
+                        color="#0094FF"
+                        ></a-sky>
+
+                </a-entity>
+
+                <a-entity id="js--sky-night">
+
+                    <a-entity
+                        light="type: ambient; color: #333"
+                        ></a-entity>
+
+                    <a-entity
+                        light="type: directional; color: #FFF; intensity: 0.1"
+                        position="0.7 0.4 -1"
+                        ></a-entity>
+
+                    <a-sky
+                        color="#000"
+                        ></a-sky>
+
+                </a-entity>
+
+            </a-entity>
 
             <!-- Auto -->
             <a-entity
@@ -31,11 +59,13 @@
                 >
 
                 <a-entity
+                    id="js--car-headlight-left"
                     position="-0.5 0.5 -1"
                     light="type: spot"
                     ></a-entity>
 
                 <a-entity
+                    id="js--car-headlight-right"
                     position="0.5 0.5 -1"
                     light="type: spot"
                     ></a-entity>
