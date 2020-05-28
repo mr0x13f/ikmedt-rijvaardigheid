@@ -1,11 +1,8 @@
 enum Controls {
-    HEADLIGHTS ,
-    BRAKE,
     ACCELERATE,
-    STEER,
+    BRAKE,
     CLUTCH,
-    BREAK,
-    NEUTRAL,
-    SHIFT
-
+    HANDBRAKE,
+    HEADLIGHTS,
+    NEUTRAL
 }
