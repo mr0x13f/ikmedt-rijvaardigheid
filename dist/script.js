@@ -98,6 +98,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
+/***/ "./tsc-out/Scene.js":
+/*!**************************!*\
+  !*** ./tsc-out/Scene.js ***!
+  \**************************/
+/*! exports provided: Scene */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Scene\", function() { return Scene; });\n/* harmony import */ var _World__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./World */ \"./tsc-out/World.js\");\n\r\nvar Scene = /** @class */ (function () {\r\n    function Scene() {\r\n    }\r\n    Scene.getSource = function () {\r\n        return \"\";\r\n    };\r\n    Scene.load = function () { };\r\n    Scene.show = function () {\r\n        var _this = this;\r\n        // Vervang de template\r\n        var sceneElement = document.getElementById(\"js--scene\");\r\n        sceneElement.setAttribute(\"template\", \"src\", this.getSource());\r\n        // Maak de wereld leeg\r\n        _World__WEBPACK_IMPORTED_MODULE_0__[\"World\"].init();\r\n        // Wacht totdat de HTML is ingeladen en start dan de scene\r\n        sceneElement.addEventListener(\"DOMNodeInserted\", function (event) {\r\n            window.requestAnimationFrame(function () {\r\n                _this.load();\r\n            });\r\n        });\r\n    };\r\n    return Scene;\r\n}());\r\n\r\n\n\n//# sourceURL=webpack:///./tsc-out/Scene.js?");
+
+/***/ }),
+
 /***/ "./tsc-out/Vector3.js":
 /*!****************************!*\
   !*** ./tsc-out/Vector3.js ***!
@@ -118,7 +130,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"World\", function() { return World; });\nvar World;\r\n(function (World) {\r\n    // World.dt gebruikt worden om waardes per seconde te updaten\r\n    // bijv 50 * World.dt wordt 50 per seconde\r\n    var entities = []; // Alle entities\r\n    var idMap = {}; // Wordt gebruikt door getEntityById()\r\n    function init() {\r\n        loop();\r\n    }\r\n    World.init = init;\r\n    // Roep Entity.update() aan op alle entities\r\n    function update() {\r\n        for (var _i = 0, entities_1 = entities; _i < entities_1.length; _i++) {\r\n            var entity = entities_1[_i];\r\n            entity.doUpdate();\r\n        }\r\n    }\r\n    function addEntity(entity) {\r\n        entities.push(entity);\r\n        if (entity.id)\r\n            idMap[entity.id] = entity;\r\n    }\r\n    World.addEntity = addEntity;\r\n    function getEntityById(id) {\r\n        return idMap[id];\r\n    }\r\n    World.getEntityById = getEntityById;\r\n    // Dit zorgt ervoor dat update() elke frame (bijv 60x per sec) wordt aangeroepen\r\n    function loop() {\r\n        var lastTime = 0;\r\n        function run(time) {\r\n            World.dt = (time - lastTime) / 1000;\r\n            lastTime = time;\r\n            update();\r\n            window.requestAnimationFrame(run);\r\n        }\r\n        window.requestAnimationFrame(run);\r\n    }\r\n})(World || (World = {}));\r\n\n\n//# sourceURL=webpack:///./tsc-out/World.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"World\", function() { return World; });\nvar World;\r\n(function (World) {\r\n    // World.dt gebruikt worden om waardes per seconde te updaten\r\n    // bijv 50 * World.dt wordt 50 per seconde\r\n    var entities = []; // Alle entities\r\n    var idMap = {}; // Wordt gebruikt door getEntityById()\r\n    function init() {\r\n        entities = [];\r\n        idMap = {};\r\n        loop();\r\n    }\r\n    World.init = init;\r\n    // Roep Entity.update() aan op alle entities\r\n    function update() {\r\n        for (var _i = 0, entities_1 = entities; _i < entities_1.length; _i++) {\r\n            var entity = entities_1[_i];\r\n            entity.doUpdate();\r\n        }\r\n    }\r\n    function addEntity(entity) {\r\n        entities.push(entity);\r\n        if (entity.id)\r\n            idMap[entity.id] = entity;\r\n    }\r\n    World.addEntity = addEntity;\r\n    function getEntityById(id) {\r\n        return idMap[id];\r\n    }\r\n    World.getEntityById = getEntityById;\r\n    // Dit zorgt ervoor dat update() elke frame (bijv 60x per sec) wordt aangeroepen\r\n    function loop() {\r\n        var lastTime = 0;\r\n        function run(time) {\r\n            World.dt = (time - lastTime) / 1000;\r\n            lastTime = time;\r\n            update();\r\n            window.requestAnimationFrame(run);\r\n        }\r\n        window.requestAnimationFrame(run);\r\n    }\r\n})(World || (World = {}));\r\n\n\n//# sourceURL=webpack:///./tsc-out/World.js?");
 
 /***/ }),
 
@@ -146,6 +158,30 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
+/***/ "./tsc-out/entities/ui/Button.js":
+/*!***************************************!*\
+  !*** ./tsc-out/entities/ui/Button.js ***!
+  \***************************************/
+/*! exports provided: Button */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Button\", function() { return Button; });\n/* harmony import */ var _Entity__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Entity */ \"./tsc-out/Entity.js\");\nvar __extends = (undefined && undefined.__extends) || (function () {\r\n    var extendStatics = function (d, b) {\r\n        extendStatics = Object.setPrototypeOf ||\r\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\r\n            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\r\n        return extendStatics(d, b);\r\n    };\r\n    return function (d, b) {\r\n        extendStatics(d, b);\r\n        function __() { this.constructor = d; }\r\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n    };\r\n})();\r\n\r\nvar Button = /** @class */ (function (_super) {\r\n    __extends(Button, _super);\r\n    function Button(id) {\r\n        var _this = _super.call(this, id) || this;\r\n        _this.onclick = function () { };\r\n        if (!_this.element)\r\n            return _this;\r\n        _this.element.classList.add(\"ui\");\r\n        _this.element.onclick = function () {\r\n            _this.onclick();\r\n        };\r\n        return _this;\r\n    }\r\n    return Button;\r\n}(_Entity__WEBPACK_IMPORTED_MODULE_0__[\"Entity\"]));\r\n\r\n\n\n//# sourceURL=webpack:///./tsc-out/entities/ui/Button.js?");
+
+/***/ }),
+
+/***/ "./tsc-out/entities/ui/MenuCursor.js":
+/*!*******************************************!*\
+  !*** ./tsc-out/entities/ui/MenuCursor.js ***!
+  \*******************************************/
+/*! exports provided: MenuCursor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"MenuCursor\", function() { return MenuCursor; });\n/* harmony import */ var _Entity__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Entity */ \"./tsc-out/Entity.js\");\nvar __extends = (undefined && undefined.__extends) || (function () {\r\n    var extendStatics = function (d, b) {\r\n        extendStatics = Object.setPrototypeOf ||\r\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\r\n            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\r\n        return extendStatics(d, b);\r\n    };\r\n    return function (d, b) {\r\n        extendStatics(d, b);\r\n        function __() { this.constructor = d; }\r\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n    };\r\n})();\r\n\r\nvar MenuCursor = /** @class */ (function (_super) {\r\n    __extends(MenuCursor, _super);\r\n    function MenuCursor(id) {\r\n        var _this = _super.call(this, id) || this;\r\n        if (!_this.element)\r\n            return _this;\r\n        _this.element.setAttribute(\"raycaster\", \"objects\", \".ui\");\r\n        return _this;\r\n    }\r\n    MenuCursor.prototype.click = function () {\r\n        var _a;\r\n        (_a = this.element) === null || _a === void 0 ? void 0 : _a.click();\r\n    };\r\n    return MenuCursor;\r\n}(_Entity__WEBPACK_IMPORTED_MODULE_0__[\"Entity\"]));\r\n\r\n\n\n//# sourceURL=webpack:///./tsc-out/entities/ui/MenuCursor.js?");
+
+/***/ }),
+
 /***/ "./tsc-out/main.js":
 /*!*************************!*\
   !*** ./tsc-out/main.js ***!
@@ -154,7 +190,31 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _World__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./World */ \"./tsc-out/World.js\");\n/* harmony import */ var _entities_Car__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./entities/Car */ \"./tsc-out/entities/Car.js\");\n/* harmony import */ var _entities_Sky__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./entities/Sky */ \"./tsc-out/entities/Sky.js\");\n\r\n\r\n\r\nwindow.onload = function () {\r\n    window.requestAnimationFrame(function () {\r\n        // Start de simulatie\r\n        _World__WEBPACK_IMPORTED_MODULE_0__[\"World\"].init();\r\n        var car = new _entities_Car__WEBPACK_IMPORTED_MODULE_1__[\"Car\"](\"js--car\"); // Verbind een Car entity aan #car\r\n        car.setHeadlights(false);\r\n        var sky = new _entities_Sky__WEBPACK_IMPORTED_MODULE_2__[\"Sky\"](\"js--sky\");\r\n        sky.setSky(_entities_Sky__WEBPACK_IMPORTED_MODULE_2__[\"SkyType\"].DAY);\r\n    });\r\n};\r\n\n\n//# sourceURL=webpack:///./tsc-out/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scenes_MenuScene__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scenes/MenuScene */ \"./tsc-out/scenes/MenuScene.js\");\n\r\nwindow.onload = function () {\r\n    // Start menu scene\r\n    _scenes_MenuScene__WEBPACK_IMPORTED_MODULE_0__[\"MenuScene\"].show();\r\n};\r\n\n\n//# sourceURL=webpack:///./tsc-out/main.js?");
+
+/***/ }),
+
+/***/ "./tsc-out/scenes/MenuScene.js":
+/*!*************************************!*\
+  !*** ./tsc-out/scenes/MenuScene.js ***!
+  \*************************************/
+/*! exports provided: MenuScene */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"MenuScene\", function() { return MenuScene; });\n/* harmony import */ var _Scene__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Scene */ \"./tsc-out/Scene.js\");\n/* harmony import */ var _entities_ui_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../entities/ui/Button */ \"./tsc-out/entities/ui/Button.js\");\n/* harmony import */ var _SimulationScene__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SimulationScene */ \"./tsc-out/scenes/SimulationScene.js\");\n/* harmony import */ var _entities_ui_MenuCursor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../entities/ui/MenuCursor */ \"./tsc-out/entities/ui/MenuCursor.js\");\nvar __extends = (undefined && undefined.__extends) || (function () {\r\n    var extendStatics = function (d, b) {\r\n        extendStatics = Object.setPrototypeOf ||\r\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\r\n            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\r\n        return extendStatics(d, b);\r\n    };\r\n    return function (d, b) {\r\n        extendStatics(d, b);\r\n        function __() { this.constructor = d; }\r\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n    };\r\n})();\r\n\r\n\r\n\r\n\r\nvar MenuScene = /** @class */ (function (_super) {\r\n    __extends(MenuScene, _super);\r\n    function MenuScene() {\r\n        return _super !== null && _super.apply(this, arguments) || this;\r\n    }\r\n    MenuScene.getSource = function () {\r\n        return \"scenes/menu.html\";\r\n    };\r\n    MenuScene.load = function () {\r\n        var cursor = new _entities_ui_MenuCursor__WEBPACK_IMPORTED_MODULE_3__[\"MenuCursor\"](\"js--cursor\");\r\n        var btn = new _entities_ui_Button__WEBPACK_IMPORTED_MODULE_1__[\"Button\"](\"js--button\");\r\n        btn.onclick = function () {\r\n            _SimulationScene__WEBPACK_IMPORTED_MODULE_2__[\"SimulationScene\"].show();\r\n        };\r\n    };\r\n    return MenuScene;\r\n}(_Scene__WEBPACK_IMPORTED_MODULE_0__[\"Scene\"]));\r\n\r\n\n\n//# sourceURL=webpack:///./tsc-out/scenes/MenuScene.js?");
+
+/***/ }),
+
+/***/ "./tsc-out/scenes/SimulationScene.js":
+/*!*******************************************!*\
+  !*** ./tsc-out/scenes/SimulationScene.js ***!
+  \*******************************************/
+/*! exports provided: SimulationScene */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"SimulationScene\", function() { return SimulationScene; });\n/* harmony import */ var _Scene__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Scene */ \"./tsc-out/Scene.js\");\n/* harmony import */ var _entities_Car__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../entities/Car */ \"./tsc-out/entities/Car.js\");\n/* harmony import */ var _entities_Sky__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../entities/Sky */ \"./tsc-out/entities/Sky.js\");\nvar __extends = (undefined && undefined.__extends) || (function () {\r\n    var extendStatics = function (d, b) {\r\n        extendStatics = Object.setPrototypeOf ||\r\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\r\n            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\r\n        return extendStatics(d, b);\r\n    };\r\n    return function (d, b) {\r\n        extendStatics(d, b);\r\n        function __() { this.constructor = d; }\r\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n    };\r\n})();\r\n\r\n\r\n\r\nvar SimulationScene = /** @class */ (function (_super) {\r\n    __extends(SimulationScene, _super);\r\n    function SimulationScene() {\r\n        return _super !== null && _super.apply(this, arguments) || this;\r\n    }\r\n    SimulationScene.getSource = function () {\r\n        return \"scenes/simulation.html\";\r\n    };\r\n    SimulationScene.load = function () {\r\n        var car = new _entities_Car__WEBPACK_IMPORTED_MODULE_1__[\"Car\"](\"js--car\"); // Verbind een Car entity aan #car\r\n        car.setHeadlights(false);\r\n        var sky = new _entities_Sky__WEBPACK_IMPORTED_MODULE_2__[\"Sky\"](\"js--sky\");\r\n        sky.setSky(_entities_Sky__WEBPACK_IMPORTED_MODULE_2__[\"SkyType\"].DAY);\r\n    };\r\n    return SimulationScene;\r\n}(_Scene__WEBPACK_IMPORTED_MODULE_0__[\"Scene\"]));\r\n\r\n\n\n//# sourceURL=webpack:///./tsc-out/scenes/SimulationScene.js?");
 
 /***/ })
 

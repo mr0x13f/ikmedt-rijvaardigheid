@@ -1,16 +1,10 @@
 import { World } from "./World"
-import { Car } from "./entities/Car";
-import { Sky, SkyType } from "./entities/Sky";
+import { MenuScene } from "./scenes/MenuScene";
+import { SimulationScene } from "./scenes/SimulationScene";
 
-window.onload = () => { window.requestAnimationFrame( () => {
+window.onload = () => {
 
-    // Start de simulatie
-    World.init();
+    // Start menu scene
+    MenuScene.show();
 
-    let car:Car = new Car("js--car"); // Verbind een Car entity aan #car
-    car.setHeadlights(false);
-
-    let sky:Sky = new Sky("js--sky");
-    sky.setSky(SkyType.DAY);
-
-})};
+};

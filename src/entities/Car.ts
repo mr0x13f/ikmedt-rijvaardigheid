@@ -20,7 +20,7 @@ export class Car extends Entity {
 
     }
 
-    public update() {
+    protected update() {
 
         const SPEED = 5; // meter per seconde
         const DIRECTION = new Vector3(0,0,-1); // richting

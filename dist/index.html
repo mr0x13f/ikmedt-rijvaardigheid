@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
         <script src="script.js"></script>
     </head>
     <body>
@@ -11,86 +12,12 @@
             <a-assets>
                 <img id="textures/dev1" src="assets/textures/dev_measuregeneric01.png" alt="">
                 <img id="textures/dev2" src="assets/textures/dev_measuregeneric01b.png" alt="">
+                
                 <a-asset-item id="skyline-obj" src="assets/models/skyline_windowless.obj"></a-asset-item>
             </a-assets>
 
-
-            <a-entity id="js--sky" >
-
-                <a-entity id="js--sky-day">
-
-                    <a-entity
-                        light="type: ambient; color: #666"
-                        ></a-entity>
-
-                    <a-entity
-                        light="type: directional; color: #FFF; intensity: 2"
-                        position="0.7 0.4 -1"
-                        ></a-entity>
-
-                    <a-sky
-                        color="#0094FF"
-                        ></a-sky>
-
-                </a-entity>
-
-                <a-entity id="js--sky-night">
-
-                    <a-entity
-                        light="type: ambient; color: #333"
-                        ></a-entity>
-
-                    <a-entity
-                        light="type: directional; color: #FFF; intensity: 0.1"
-                        position="0.7 0.4 -1"
-                        ></a-entity>
-
-                    <a-sky
-                        color="#000"
-                        ></a-sky>
-
-                </a-entity>
-
-            </a-entity>
-
-            <!-- Auto -->
-            <a-entity
-                id="js--car"
-                position="0 0 0"
-                >
-
-                <a-entity
-                    position="0 0 0"
-                    obj-model="obj: #skyline-obj;"
-                    scale="0.02 0.02 0.02"
-                    rotation="0 180 0"
-                    ></a-entity>
-
-                <a-entity
-                    id="js--car-headlight-left"
-                    position="-0.5 0.5 -1"
-                    light="type: spot"
-                    ></a-entity>
-
-                <a-entity
-                    id="js--car-headlight-right"
-                    position="0.5 0.5 -1"
-                    light="type: spot"
-                    ></a-entity>
-
-                <a-camera
-                    position="0.6 1.7 -0.1"
-                    wasd-controls-enabled=false
-                    ></a-camera>
-            </a-entity>
-
-            <a-plane
-                material="src:#textures/dev2; repeat: 5 1000"
-                position="0 0 0"
-                rotation="-90 0 0"
-                width="5" height="1000"
-                ></a-plane>
-
+            <a-entity class="scene" id="js--scene" template="src: scenes/empty.html"></a-entity>
+            
         </a-scene>
     </body>
 </html>

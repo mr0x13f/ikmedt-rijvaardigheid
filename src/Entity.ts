@@ -12,7 +12,7 @@ export abstract class Entity {
     public velocity:Vector3;    // Snelheid in meters per seconde
 
     // Hooks voor subclasses
-    public update() {}
+    protected update() {}
 
     constructor(id:string|null) {
 
