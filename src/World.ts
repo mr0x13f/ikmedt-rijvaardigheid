@@ -1,5 +1,4 @@
 import { Entity } from "./Entity";
-import {Controller} from "./Controller";
 import { Gamepad } from "./Gamepad";
 
 export module World {
