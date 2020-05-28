@@ -12,8 +12,7 @@ export abstract class Entity {
     public velocity:Vector3;    // Snelheid in meters per seconde
 
     // Hooks voor subclasses
-    public init() {}
-    public update() {}
+    protected update() {}
 
     constructor(id:string|null) {
 
@@ -41,8 +40,6 @@ export abstract class Entity {
         }
 
         World.addEntity(this); // Registreert deze entity in de World
-        
-        this.init();
     }
 
     // Wordt elke frame (60hz) uitgevoerd

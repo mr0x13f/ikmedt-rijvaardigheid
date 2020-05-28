@@ -1,0 +1,40 @@
+<a-entity>
+
+    <a-camera
+        wasd-controls-enabled=false
+        >
+        <a-cursor
+            id="js--cursor"
+            raycaster="objects: .ui"
+            animation__mouseenter="property: scale; startEvents: mouseenter; easing: linear; dur: 100; to: 1.5 1.5 1.5"
+            animation__mouseleave="property: scale; startEvents: mouseleave; easing: linear; dur: 100; to: 1 1 1"
+            ></a-cursor>
+    </a-camera>
+
+    <a-plane
+        id="js--button"
+        color="#CCC"
+        position="0 2 -2"
+        height="0.5"
+        width="2"
+        >
+    
+        <a-text
+            position="0 0 0.01"
+            value="Start simulation"
+            align="center"
+            color="#4c4c4c"
+            ></a-text>
+
+    </a-plane>
+
+    <a-entity
+        light="type: ambient; color: #BBB"
+        ></a-entity>
+
+    <a-entity
+        light="type: directional; color: #FFF; intensity: 0.6"
+        position="-0.5 1 1"
+        ></a-entity>
+
+</a-entity>

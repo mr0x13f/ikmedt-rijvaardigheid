@@ -13,6 +13,8 @@ export module World {
 
     export function init() {
 
+        entities = [];
+        idMap = {};
         loop();
 
     }
