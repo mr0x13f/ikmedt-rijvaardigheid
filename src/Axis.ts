@@ -1,0 +1,4 @@
+enum Axis {
+    LEFT,
+    RIGHT
+}

@@ -31,10 +31,28 @@ export module Gamepad {
         if(isConnected()) {
             let buttons = <ReadonlyArray<GamepadButton>> controller?.getButtons();
             let buttonId = <number> controller?.getButtonIdByControls(action);
-
-            return (<GamepadButton> buttons[buttonId]).pressed;
+            let isPressed = (<GamepadButton> buttons[buttonId]).value > 0 || (<GamepadButton> buttons[buttonId]).pressed;
+            if(isPressed) {
+                controller?.incrementAction(action);
+                return isPressed;
+            }
+            controller?.resetAction(action);
+            return isPressed;
         }
     }
+
+    export function isDown(action: Controls) {
+        if(isConnected()) {
+            return controller?.isDown(action);
+        }
+    }
+
+    export function getAxis(axis: Axis) {
+        if(isConnected()) {
+            controller?.getAxis(axis);
+        }
+    }
+
 
     function isConnected() {
         return controller != null;
