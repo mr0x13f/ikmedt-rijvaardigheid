@@ -27,4 +27,18 @@ export class PlayStation4Controller implements Controller {
             }
         }
     }
+
+    getAxes(): ReadonlyArray<number> {
+        // @ts-ignore
+        return this.getControllerState().axes;
+    }
+
+    getButtons(): ReadonlyArray<GamepadButton> {
+        // @ts-ignore
+        return this.getControllerState().buttons;
+    }
+
+    getButtonIdByControls(controls: Controls): number {
+        return this.mapping[controls];
+    }
 }

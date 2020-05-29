@@ -26,4 +26,17 @@ export module Gamepad {
     export function update() {
 
     }
+
+    export function isPressed(action: Controls) {
+        if(isConnected()) {
+            let buttons = <ReadonlyArray<GamepadButton>> controller?.getButtons();
+            let buttonId = <number> controller?.getButtonIdByControls(action);
+
+            return (<GamepadButton> buttons[buttonId]).pressed;
+        }
+    }
+
+    function isConnected() {
+        return controller != null;
+    }
 }
