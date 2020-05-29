@@ -1,4 +1,4 @@
-enum Controls {
+export enum Controls {
     ACCELERATE,
     BRAKE,
     CLUTCH,

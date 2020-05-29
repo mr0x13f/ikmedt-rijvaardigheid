@@ -1,3 +1,6 @@
+import {Controls} from "./Controls";
+import {Axis} from "./Axis";
+
 export interface Controller {
     id: string; //Controller identifier
     mapping: Record<Controls, number>;  //Mapping for current controller.

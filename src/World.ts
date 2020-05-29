@@ -20,7 +20,7 @@ export module World {
 
     // Roep Entity.update() aan op alle entities
     function update() {
-        Gamepad.update()
+        Gamepad.update();
 
         for (let entity of entities)
             entity.doUpdate();

@@ -1,4 +1,6 @@
 import {Controller} from "../Controller";
+import {Controls} from "../Controls";
+import {Axis} from "../Axis";
 
 export class PlayStation4Controller implements Controller {
     id: string;
@@ -33,14 +35,7 @@ export class PlayStation4Controller implements Controller {
     }
 
     getControllerState() {
-        let gamepads = navigator.getGamepads();
-        for(let g in gamepads) {
-            // @ts-ignore
-            let gamepad = <Gamepad> g;
-            if(gamepad.id == this.id) {
-                return gamepad;
-            }
-        }
+        return navigator.getGamepads()[0];
     }
 
     getAxis(axis: Axis): ReadonlyArray<number> {

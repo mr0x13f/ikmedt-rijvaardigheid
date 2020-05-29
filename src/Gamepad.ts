@@ -1,5 +1,7 @@
 import {Controller} from "./Controller";
 import {PlayStation4Controller} from "./controllers/PlayStation4Controller";
+import {Controls} from "./Controls";
+import {Axis} from "./Axis";
 
 export module Gamepad {
 
@@ -24,7 +26,19 @@ export module Gamepad {
     }
 
     export function update() {
-
+        console.log("Omae wa mou shindeiru");
+        if (isConnected()) {
+            console.log("NANI?");
+            let buttons = controller?.getButtons();
+            for (let b in buttons) {
+                console.log("HUEHUEHUE");
+                // @ts-ignore
+                let button = <GamepadButton>b;
+                if (button.value > 0) {
+                    console.log("Button press");
+                }
+            }
+        }
     }
 
     export function isPressed(action: Controls) {

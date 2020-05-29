@@ -1,4 +1,4 @@
-enum Axis {
+export enum Axis {
     LEFT,
     RIGHT
 }
