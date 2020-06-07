@@ -24,6 +24,8 @@ export class Car extends Entity {
         if (Gamepad.isPressed(Controls.HEADLIGHTS))
             this.toggleHeadlights();
 
+        this.turnSteeringWheel();
+
         const SPEED = 0; // meter per seconde
         const DIRECTION = new Vector3(0,0,-1); // richting
         this.velocity = DIRECTION.mulNum(SPEED);
@@ -43,6 +45,11 @@ export class Car extends Entity {
     private updateHeadlights() {
         this.headlightLeft.setAttribute("visible", ""+this.isHeadlightsOn);
         this.headlightRight.setAttribute("visible", ""+this.isHeadlightsOn);
+    }
+
+    private turnSteeringWheel() {
+        let axisValue = Gamepad.getAxes(Controls.STEERING);
+        (<any>this.steeringWheel).object3D.rotation.z = axisValue * 90 / 180 * Math.PI;
     }
 
 }
