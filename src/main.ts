@@ -1,7 +1,5 @@
-import { World } from "./World"
 import { MenuScene } from "./scenes/MenuScene";
-import { SimulationScene } from "./scenes/SimulationScene";
-import {Gamepad} from "./Gamepad";
+import {Gamepad} from "./gamepad/Gamepad";
 
 window.onload = () => {
 
