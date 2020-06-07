@@ -25,32 +25,18 @@ export module Gamepad {
         });
     }
 
-    export function update() {
-        console.log("Omae wa mou shindeiru");
-        if (isConnected()) {
-            console.log("NANI?");
-            let buttons = controller?.getButtons();
-            for (let b in buttons) {
-                console.log("HUEHUEHUE");
-                // @ts-ignore
-                let button = <GamepadButton>b;
-                if (button.value > 0) {
-                    console.log("Button press");
-                }
-            }
-        }
-    }
-
     export function isPressed(action: Controls) {
         if(isConnected()) {
             let buttons = <ReadonlyArray<GamepadButton>> controller?.getButtons();
             let buttonId = <number> controller?.getButtonIdByControls(action);
-            let isPressed = (<GamepadButton> buttons[buttonId]).value > 0 || (<GamepadButton> buttons[buttonId]).pressed;
+            let isPressed = (<GamepadButton> buttons[buttonId]).pressed;
             if(isPressed) {
                 controller?.incrementAction(action);
+                console.log(isPressed);
                 return isPressed;
             }
             controller?.resetAction(action);
+            console.log(isPressed);
             return isPressed;
         }
     }

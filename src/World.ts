@@ -1,5 +1,6 @@
 import { Entity } from "./Entity";
 import { Gamepad } from "./Gamepad";
+import {HeadLights} from "./HeadLights";
 
 export module World {
 
@@ -9,9 +10,11 @@ export module World {
 
     let entities:Entity[] = [];          // Alle entities
     let idMap:{[id:string]:Entity} = {}; // Wordt gebruikt door getEntityById()
+    let headlights: HeadLights
 
     export function init() {
 
+        headlights = new HeadLights();
         entities = [];
         idMap = {};
         loop();
@@ -20,7 +23,7 @@ export module World {
 
     // Roep Entity.update() aan op alle entities
     function update() {
-        Gamepad.update();
+        headlights.checkHeadLights();
 
         for (let entity of entities)
             entity.doUpdate();

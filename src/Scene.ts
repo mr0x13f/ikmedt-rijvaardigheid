@@ -12,7 +12,7 @@ export abstract class Scene {
 
         // Vervang de template
         let sceneElement = <any> document.getElementById("js--scene");
-        sceneElement.setAttribute("template", "src", this.getSource())
+        (<any> sceneElement).setAttribute("template", "src", this.getSource())
 
         // Maak de wereld leeg
         World.init();
