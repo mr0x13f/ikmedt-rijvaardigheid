@@ -22,7 +22,7 @@ export class StandardGamepad implements ControllerMapping {
     public readonly MAPPING = {
 
         // Analogue
-        [Controls.STEERING] : new AxesInput(0),
+        [Controls.STEERING] : new AxesInput(0).deadzone(0.01, 1),
         [Controls.ACCELERATE] : new ButtonInput(7),
         [Controls.BRAKE] : new ButtonInput(6),
 

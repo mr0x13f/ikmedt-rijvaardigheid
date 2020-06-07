@@ -5,9 +5,13 @@ import { Controls } from "../gamepad/Controls";
 
 export class Car extends Entity {
 
+    private readonly DEBUG_SHOW_ANALOGUE_INPUT = false;
+
     private headlightLeft:HTMLElement;
     private headlightRight:HTMLElement;
     private steeringWheel:HTMLElement;
+    private debugAnalogueInput:HTMLElement;
+
     private isHeadlightsOn:boolean = false;
 
     constructor(id:string) {
@@ -16,6 +20,9 @@ export class Car extends Entity {
         this.headlightLeft = <HTMLElement> document.getElementById("js--car-headlight-left");
         this.headlightRight = <HTMLElement> document.getElementById("js--car-headlight-right");
         this.steeringWheel = <HTMLElement> document.getElementById("js--car-steering-wheel");
+        this.debugAnalogueInput = <HTMLElement> document.getElementById("js--debug-analogue-input");
+
+        this.debugAnalogueInput.setAttribute("visible", ""+this.DEBUG_SHOW_ANALOGUE_INPUT);
 
     }
 
@@ -30,6 +37,7 @@ export class Car extends Entity {
         const DIRECTION = new Vector3(0,0,-1); // richting
         this.velocity = DIRECTION.mulNum(SPEED);
 
+        this.debug();
     }
 
     public toggleHeadlights() {
@@ -50,6 +58,24 @@ export class Car extends Entity {
     private turnSteeringWheel() {
         let axisValue = Gamepad.getAxes(Controls.STEERING);
         (<any>this.steeringWheel).object3D.rotation.z = axisValue * 90 / 180 * Math.PI;
+    }
+
+    private debug() {
+
+        if (this.DEBUG_SHOW_ANALOGUE_INPUT) {
+
+            let steering = Gamepad.getAxes(Controls.STEERING);
+            let acceleration = Gamepad.getAxes(Controls.ACCELERATE);
+            let brake = Gamepad.getAxes(Controls.BRAKE);
+
+            (<any>this.debugAnalogueInput).setAttribute("value",
+                (steering > 0 ? "+" : "") + steering + "\n" +
+                (acceleration > 0 ? "+" : "") + acceleration + "\n" +
+                (brake > 0 ? "+" : "") + brake
+            );
+        }
+
+
     }
 
 }
