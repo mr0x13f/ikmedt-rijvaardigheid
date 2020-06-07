@@ -1,4 +1,5 @@
 import { Entity } from "./Entity";
+import { Gamepad } from "./gamepad/Gamepad";
 
 export module World {
 
@@ -19,10 +20,13 @@ export module World {
 
     // Roep Entity.update() aan op alle entities
     function update() {
-        
         for (let entity of entities)
             entity.doUpdate();
+    }
 
+    // Laat Gamepad de input buffer updaten
+    function handleInputs() {
+        Gamepad.handleInputs();
     }
 
     export function addEntity(entity:Entity) {
@@ -46,6 +50,7 @@ export module World {
             dt = (time - lastTime) / 1000;
             lastTime = time;
     
+            handleInputs();
             update();
     
             window.requestAnimationFrame(run);

@@ -1,5 +1,7 @@
 import { Entity } from "../Entity";
 import { Vector3 } from "../Vector3";
+import { Gamepad } from "../gamepad/Gamepad";
+import { Controls } from "../gamepad/Controls";
 
 export class Car extends Entity {
 
@@ -13,14 +15,12 @@ export class Car extends Entity {
         this.headlightLeft = <HTMLElement> document.getElementById("js--car-headlight-left");
         this.headlightRight = <HTMLElement> document.getElementById("js--car-headlight-right");
 
-        document.addEventListener("keydown", (event) => {
-            if (event.key == "h")
-                this.toggleHeadlights();
-        });
-
     }
 
     protected update() {
+        
+        if (Gamepad.isPressed(Controls.HEADLIGHTS))
+            this.toggleHeadlights();
 
         const SPEED = 0; // meter per seconde
         const DIRECTION = new Vector3(0,0,-1); // richting
