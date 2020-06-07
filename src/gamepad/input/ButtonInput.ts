@@ -12,4 +12,8 @@ export class ButtonInput implements ControllerInput {
         return gamepad.buttons[this.index].value;
     }
 
+    isPressed(gamepad:Gamepad): boolean {
+        return this.getValue(gamepad) > 0;
+    }
+
 }

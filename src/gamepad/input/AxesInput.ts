@@ -12,7 +12,7 @@ export class AxesInput implements ControllerInput {
         this.index = index;
     }
 
-    getValue(gamepad:Gamepad): number {
+    public getValue(gamepad:Gamepad): number {
         let raw = gamepad.axes[this.index].valueOf();
         let positive = raw > 0;
         let value = Math.abs(raw);
@@ -31,6 +31,10 @@ export class AxesInput implements ControllerInput {
             value = value / 2 + 0.5
 
         return value;
+    }
+
+    public isPressed(gamepad:Gamepad): boolean {
+        return false;
     }
 
     // Sets the deadzone

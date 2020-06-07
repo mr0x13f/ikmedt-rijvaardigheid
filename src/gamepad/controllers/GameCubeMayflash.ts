@@ -8,7 +8,7 @@ import { AxesInput } from "../input/AxesInput";
     connected with the Mayflash GameCube Controller Adapter (in PC mode)
 
     The joysticks only reach about 0.75, zo they have quite a low max deadzone.
-    The triggers go from -1 to 1 instead of the more standard 0 to 1, so the trigger values are normalized.
+    The triggers are axis that go from -1 to 1 instead of the more standard 0 to 1, so the trigger values are normalized.
 */
 
 export class GameCubeMayflash implements ControllerMapping {
