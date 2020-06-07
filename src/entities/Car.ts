@@ -5,6 +5,7 @@ export class Car extends Entity {
 
     private headlightLeft:HTMLElement;
     private headlightRight:HTMLElement;
+    private steeringWheel:HTMLElement;
     private isHeadlightsOn:boolean = false;
 
     constructor(id:string) {
@@ -12,6 +13,7 @@ export class Car extends Entity {
 
         this.headlightLeft = <HTMLElement> document.getElementById("js--car-headlight-left");
         this.headlightRight = <HTMLElement> document.getElementById("js--car-headlight-right");
+        this.steeringWheel = <HTMLElement> document.getElementById("js--car-steering-wheel");
 
         document.addEventListener("keydown", (event) => {
             if (event.key == "h")
