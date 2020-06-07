@@ -14,7 +14,7 @@ export class MenuScene extends Scene {
         let cursor = new Cursor("js--cursor");
 
         let btn = new Button("js--button");
-        btn.onclick = () => {
+        btn.onClickEvent = () => {
             SimulationScene.show();
         }
     }
