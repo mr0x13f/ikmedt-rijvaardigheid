@@ -50,7 +50,14 @@
             scale="0.02 0.02 0.02"
             rotation="0 180 0"
             material="color: #404040"
+        ><a-entity
+            id="js--car-steering-wheel"
+            obj-model="obj: #skyline-steering-wheel;"
+            material="color: #404040"
+            position="-25.5 62 28"
+            rotation="0 0 0"
             ></a-entity>
+        </a-entity>
 
         <a-entity
             id="js--car-headlight-left"
@@ -66,7 +73,7 @@
 
         <a-camera
             position="0.6 1.7 -0.1"
-            wasd-controls-enabled=false
+            wasd-controls-enabled=true
             ></a-camera>
 
     </a-entity>
@@ -74,7 +81,7 @@
     <a-entity
         position="0 0 0"
         obj-model="obj: #testcircuit-obj;"
-        scale="2 2 2"
+        scale="5 5 5"
         rotation="0 0 0"
         material="color: #232B33"
         ></a-entity>
