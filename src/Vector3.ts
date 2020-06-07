@@ -14,8 +14,20 @@ export class Vector3 {
     // Methods
     ///////////////////////////////////////////////////////////////////////
 
+    public toString(): string {
+        return "("+this.x+","+this.y+","+this.z+")";
+    }
+
     public magnitude(): number {
-        return Math.sqrt(this.x*this.x + this.y+this.y);
+        return Math.sqrt(this.magnitude2());
+    }
+
+    public magnitude2(): number {
+        return this.x*this.x + this.y*this.y + this.z*this.z;
+    }
+
+    public normalize(): Vector3 {
+        return this.divNum(this.magnitude());
     }
 
     ///////////////////////////////////////////////////////////////////////

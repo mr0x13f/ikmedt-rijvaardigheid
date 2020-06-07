@@ -1,6 +1,7 @@
 import { Scene } from "../Scene";
 import { Car } from "../entities/Car";
 import { Sky, SkyType } from "../entities/Sky";
+import { GTRSkyline } from "../car/models/GTRSkyline";
 
 export class SimulationScene extends Scene {
 
@@ -10,7 +11,7 @@ export class SimulationScene extends Scene {
 
     protected static load(data:any) {
 
-        let car:Car = new Car("js--car"); // Verbind een Car entity aan #car
+        let car:Car = new Car("js--car", new GTRSkyline()); // Verbind een Car entity aan #car
         car.setHeadlights(false);
 
         let sky:Sky = new Sky("js--sky");
