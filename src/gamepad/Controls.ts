@@ -4,6 +4,8 @@ export enum Controls {
     ACCELERATE,
     BRAKE,
     STEERING,
+    SHIFTER_X,
+    SHIFTER_Y,
 
     // Digital
     CLUTCH,

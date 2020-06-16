@@ -21,6 +21,8 @@ export class GameCubeMayflash implements ControllerMapping {
         [Controls.STEERING] : new AxesInput(0).deadzone(0.05, 0.75),
         [Controls.ACCELERATE] : new AxesInput(4).deadzone(0, 0.6).normalize(),
         [Controls.BRAKE] : new AxesInput(3).deadzone(0, 0.6).normalize(),
+        [Controls.SHIFTER_X] : new AxesInput(5).deadzone(0.05, 0.75),
+        [Controls.SHIFTER_Y] : new AxesInput(2).deadzone(0.05, 0.75),
 
         // Digital
         [Controls.CLUTCH] : new ButtonInput(7),

@@ -25,6 +25,8 @@ export class StandardGamepad implements ControllerMapping {
         [Controls.STEERING] : new AxesInput(0).deadzone(0.01, 1),
         [Controls.ACCELERATE] : new ButtonInput(7),
         [Controls.BRAKE] : new ButtonInput(6),
+        [Controls.SHIFTER_X] : new AxesInput(2).deadzone(0.01, 1),
+        [Controls.SHIFTER_Y] : new AxesInput(3).deadzone(0.01, 1),
 
         // Digital
         [Controls.CLUTCH] : new ButtonInput(4),
