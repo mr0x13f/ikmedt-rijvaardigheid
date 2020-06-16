@@ -9,10 +9,11 @@ export enum Controls {
 
     // Digital
     CLUTCH,
-    CLUTCH2,
     HANDBRAKE,
     HEADLIGHTS,
     NEUTRAL,
+    DOGBOX_UP,
+    DOGBOX_DOWN,
 
     // Menu
     PAUSE,

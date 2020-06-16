@@ -23,7 +23,7 @@ export class GTRSkyline implements CarModel{
     readonly rearWheelPosition = new Vector3(); // TODO
 
     // Weight Transfer
-    readonly mass = 0; // TODO
+    readonly mass = 1560;
     readonly centerOfGravity = new Vector3(); // TODO
 
     // Drivetrain
@@ -39,7 +39,6 @@ export class GTRSkyline implements CarModel{
         [Gears.THIRD] : 1.30,
         [Gears.FOURTH] : 1,
         [Gears.FIFTH] : 0.74,
-        [Gears.SIXTH] : 0.50,
     };
 
     // Engine

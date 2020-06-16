@@ -2,6 +2,7 @@ import {ControllerMapping} from "../ControllerMapping";
 import {Controls} from "../Controls";
 import { ButtonInput } from "../input/ButtonInput";
 import { AxesInput } from "../input/AxesInput";
+import { HairTriggerInput } from "../input/HairTriggerInput";
 
 /*
     Button mapping for GameCube controllers
@@ -26,10 +27,11 @@ export class GameCubeMayflash implements ControllerMapping {
 
         // Digital
         [Controls.CLUTCH] : new ButtonInput(7),
-        [Controls.CLUTCH2] : new ButtonInput(7),
         [Controls.HANDBRAKE] : new ButtonInput(1),
         [Controls.HEADLIGHTS] : new ButtonInput(12),
         [Controls.NEUTRAL] : new ButtonInput(2),
+        [Controls.DOGBOX_UP] : new HairTriggerInput( new AxesInput(2) ).setTriggerPoint(0.3).invert(),
+        [Controls.DOGBOX_DOWN] : new HairTriggerInput( new AxesInput(2) ).setTriggerPoint(0.3),
 
         // Menu
         [Controls.PAUSE] : new ButtonInput(9),

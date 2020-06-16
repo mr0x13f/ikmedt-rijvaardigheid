@@ -2,6 +2,8 @@ import {ControllerMapping} from "../ControllerMapping";
 import {Controls} from "../Controls";
 import { ButtonInput } from "../input/ButtonInput";
 import { AxesInput } from "../input/AxesInput";
+import { HairTriggerInput } from "../input/HairTriggerInput";
+import { MultipleInput } from "../input/MultipleInput";
 
 /*
     Button mapping for controllers marked with STANDARD GAMEPAD
@@ -29,11 +31,12 @@ export class StandardGamepad implements ControllerMapping {
         [Controls.SHIFTER_Y] : new AxesInput(3).deadzone(0.01, 1),
 
         // Digital
-        [Controls.CLUTCH] : new ButtonInput(4),
-        [Controls.CLUTCH2] : new ButtonInput(5),
+        [Controls.CLUTCH] : new MultipleInput( new ButtonInput(4), new ButtonInput(5)),
         [Controls.HANDBRAKE] : new ButtonInput(0),
         [Controls.HEADLIGHTS] : new ButtonInput(2),
         [Controls.NEUTRAL] : new ButtonInput(11),
+        [Controls.DOGBOX_UP] : new HairTriggerInput( new AxesInput(3) ).setTriggerPoint(0.3).invert(),
+        [Controls.DOGBOX_DOWN] : new HairTriggerInput( new AxesInput(3) ).setTriggerPoint(0.3),
 
         // Menu
         [Controls.PAUSE] : new ButtonInput(9),

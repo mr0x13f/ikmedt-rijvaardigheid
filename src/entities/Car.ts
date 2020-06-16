@@ -4,7 +4,7 @@ import { Gamepad } from "../gamepad/Gamepad";
 import { Controls } from "../gamepad/Controls";
 import { World } from "../World";
 import { CarModel } from "../car/CarModel";
-import { Gears } from "../car/Gears";
+import { Gears, previousGear, nextGear } from "../car/Gears";
 
 export class Car extends Entity {
 
@@ -40,9 +40,7 @@ export class Car extends Entity {
         if (Gamepad.isPressed(Controls.HEADLIGHTS))
             this.toggleHeadlights();
 
-        if (this.velocity.magnitude2() > 0)
-            this.direction = this.velocity.normalize();
-
+        this.shift();
         this.physics();
         this.turnSteeringWheel();
     }
@@ -62,6 +60,26 @@ export class Car extends Entity {
         this.headlightRight.setAttribute("visible", ""+this.isHeadlightsOn);
     }
 
+    private shift() {
+        if (!Gamepad.isDown(Controls.CLUTCH))
+            return;
+
+        if (Gamepad.isPressed(Controls.DOGBOX_UP) && previousGear[this.currentGear]) {
+            this.currentGear = <Gears> previousGear[this.currentGear];
+            this.updateGear();
+        }
+            
+        if (Gamepad.isPressed(Controls.DOGBOX_DOWN) && nextGear[this.currentGear]) {
+            this.currentGear = <Gears> nextGear[this.currentGear];
+            this.updateGear();
+        }
+        
+    }
+
+    private updateGear() {
+        console.log(this.currentGear);
+    }
+
     private turnSteeringWheel() {
         let axisValue = Gamepad.getAxes(Controls.STEERING);
         (<any>this.steeringWheel).object3D.rotation.z = axisValue * 90 / 180 * Math.PI;
@@ -69,6 +87,9 @@ export class Car extends Entity {
 
     // https://asawicki.info/Mirror/Car%20Physics%20for%20Games/Car%20Physics%20for%20Games.html
     private physics() {
+
+        if (this.velocity.magnitude2() > 0)
+            this.direction = this.velocity.normalize();
 
         let rpm = 1000;
 
@@ -97,7 +118,7 @@ export class Car extends Entity {
 
         //}
 
-        this.velocity = this.velocity.add( longtitudinalForce.mulNum(World.dt) );
+        this.velocity = this.velocity.add( longtitudinalForce.mulNum(World.dt).divNum(this.carModel.mass) );
 
         this.debugText.setAttribute("value", ""+
             this.velocity.magnitude() + "\nkm/h"
