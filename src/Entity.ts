@@ -47,6 +47,9 @@ export abstract class Entity {
 
         this.update(); // Update methode van subclass
 
+        if (this.velocity.magnitude() < 0.001)
+            this.velocity = new Vector3(0,0,0)
+
         // Update de positie met de velocity
         this.position = this.position.add( this.velocity.mulNum(World.dt) );
 

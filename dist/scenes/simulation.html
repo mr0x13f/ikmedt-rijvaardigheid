@@ -64,18 +64,26 @@
             id="js--car-headlight-left"
             position="-1 1 -3"
             light="type: spot"
+            visible=false
             ></a-entity>
 
         <a-entity
             id="js--car-headlight-right"
             position="1 1 -3"
             light="type: spot"
+            visible=false
             ></a-entity>
 
         <a-camera
             position="0.6 1.7 -0.1"
             wasd-controls-enabled=true
             ></a-camera>
+
+        <a-text
+            id="js--debug-text"
+            position="0.2 1.9 -1"
+            visible=true
+            ></a-text>
 
     </a-entity>
 
@@ -87,5 +95,10 @@
         material="color: #232B33"
         ></a-entity>
 
-
+    <a-plane
+        material="src:#textures/grass; repeat: 100 100"
+        position="0 -0.05 0"
+        rotation="-90 0 0"
+        width="1000" height="1000"
+        ></a-plane>
 </a-entity>

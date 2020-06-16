@@ -47,7 +47,7 @@ export module Gamepad {
         // (door een enum loopen is echt drie keer kut)
         for (let control in Controls)
             if (!isNaN(Number(control)))
-                if (currentMapping.MAPPING[<Controls><unknown>control].getValue(currentGamepad) > 0)
+                if (currentMapping.MAPPING[<Controls><unknown>control].isPressed(currentGamepad))
                     inputBuffer[<Controls><unknown>control] = true;
                 
     }
