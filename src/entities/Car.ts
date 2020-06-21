@@ -149,7 +149,8 @@ export class Car extends Entity {
             [Gears.FIFTH]: 5000,
         }
 
-        const brakingAcceleration = 15; // m/s2
+        const friction = 5;
+        const brakingAcceleration = 10; // m/s2
         const maxSteering = 1 / 180*Math.PI; // rad/s
 
         if (this.velocity.magnitude() > 0)
@@ -157,6 +158,8 @@ export class Car extends Entity {
 
         let acceleration = gearAcceleration[this.currentGear] * Gamepad.getAxes(Controls.ACCELERATE);
         let braking = brakingAcceleration * Gamepad.getAxes(Controls.BRAKE);
+        if (acceleration == 0)
+            braking += friction;
         this.simpleSpeed += (acceleration - braking);
 
         this.simpleSpeed = Math.min(this.simpleSpeed, gearTopSpeed[this.currentGear]);
