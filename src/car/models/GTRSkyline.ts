@@ -15,7 +15,8 @@ export class GTRSkyline implements CarModel{
 
     // Physics constants
     readonly dragConstant = 0.4257;
-    readonly brakingConstant = 0; // TODO
+    readonly brakingConstant = -10000; // TODO
+    readonly tyreFrictionCoefficient = 1.5;
 
     // Wheels
     readonly wheelRadius = 0.3265;
@@ -45,8 +46,6 @@ export class GTRSkyline implements CarModel{
     readonly idleRpm = 1000;
     readonly stallRpm = 1000;
     readonly redlineRpm = 7000;
-    public torqueCurve(rpm:number): number {
-        return -0.000003792735043*rpm*rpm + 0.03803418803*rpm + 254.6474359;
-    }
-
+    public torqueCurve = (rpm:number) => -0.000003792735043*rpm*rpm + 0.03803418803*rpm + 254.6474359;
+    
 }

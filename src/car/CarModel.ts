@@ -15,6 +15,7 @@ export interface CarModel {
     // Physics constants
     readonly dragConstant: number;
     readonly brakingConstant: number;
+    readonly tyreFrictionCoefficient: number;
 
     // Wheels
     readonly wheelRadius: number; // m
