@@ -21,6 +21,8 @@ export interface CarModel {
     readonly wheelRadius: number; // m
     readonly frontWheelPosition: Vector3;
     readonly rearWheelPosition: Vector3;
+    readonly maxSteeringAngle: number;
+    readonly corneringStiffness: number;
 
     // Weight Transfer
     readonly mass: number; // kg
