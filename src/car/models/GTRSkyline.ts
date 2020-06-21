@@ -20,12 +20,14 @@ export class GTRSkyline implements CarModel{
 
     // Wheels
     readonly wheelRadius = 0.3265;
-    readonly frontWheelPosition = new Vector3(); // TODO
-    readonly rearWheelPosition = new Vector3(); // TODO
+    readonly frontWheelPosition = new Vector3(1,0.5,-1); // TODO
+    readonly rearWheelPosition = new Vector3(1,0.5,1); // TODO
+    readonly maxSteeringAngle = 40 /180*Math.PI;
+    readonly corneringStiffness = -5.20;
 
     // Weight Transfer
     readonly mass = 1560;
-    readonly centerOfGravity = new Vector3(); // TODO
+    readonly centerOfGravity = new Vector3(0,1,0); // TODO
 
     // Drivetrain
     readonly layout = Layout.FOUR_WHEEL_DRIVE;

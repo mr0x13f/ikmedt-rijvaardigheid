@@ -4,10 +4,10 @@ export class Vector3 {
     public y:number=0;
     public z:number=0;
 
-    constructor(x?:number, y?:number, z?:number) {
-        this.x = x || 0;
-        this.y = y || x || 0;
-        this.z = z || x || 0;
+    constructor(x:number=0, y:number=x, z:number=x) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     ///////////////////////////////////////////////////////////////////////
@@ -28,6 +28,15 @@ export class Vector3 {
 
     public normalize(): Vector3 {
         return this.divNum(this.magnitude());
+    }
+
+    public eulerAngleFromDirection(): Vector3 {
+        // This might be wrong but it doesnt really matter
+        return new Vector3(
+            Math.atan2(this.z, this.y),
+            Math.atan2(this.x, this.z),
+            Math.atan2(this.y, this.x),
+        );
     }
 
     ///////////////////////////////////////////////////////////////////////

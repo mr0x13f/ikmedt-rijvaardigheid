@@ -15,16 +15,18 @@ export class Car extends Entity {
     private steeringWheel:HTMLElement;
     private debugText:HTMLElement;
     private gearIndicator:HTMLElement;
+    private gearDisplay:HTMLElement;
 
     private isHeadlightsOn:boolean = false;
     private direction:Vector3 = new Vector3();
     private carModel:CarModel;
-    private currentGear:Gears = Gears.FIRST;
+    private currentGear:Gears = Gears.NEUTRAL;
 
     private acceleration:number = 0;
     private rpm:number = 1000;
     private rearAngularVelocity:number = 0;
     private frontAngularVelocity:number = 0;
+    private steeringAngle:number = 0;
 
     private gearIndicatorMap = {
         [Gears.REVERSE]: "-43 87 35",
@@ -46,6 +48,7 @@ export class Car extends Entity {
         this.steeringWheel = <HTMLElement> document.getElementById("js--car-steering-wheel");
         this.debugText = <HTMLElement> document.getElementById("js--debug-text");
         this.gearIndicator = <HTMLElement> document.getElementById("js--gear-indicator");
+        this.gearDisplay = <HTMLElement> document.getElementById("js--gear-display");
 
         this.velocity = new Vector3(0,0,0);
         this.direction = new Vector3(0,0,-1);
@@ -59,9 +62,14 @@ export class Car extends Entity {
         if (Gamepad.isPressed(Controls.HEADLIGHTS))
             this.toggleHeadlights();
 
+        this.steer();
         this.shift();
-        this.physics();
-        this.turnSteeringWheel();
+        this.simplePhysics()
+        //this.physics();
+
+        this.debugText.setAttribute("value", ""+
+            this.velocity.magnitude() + "\nkm/h"
+        );
     }
 
     public toggleHeadlights() {
@@ -79,7 +87,20 @@ export class Car extends Entity {
         this.headlightRight.setAttribute("visible", ""+this.isHeadlightsOn);
     }
 
+    private steer() {
+
+        this.steeringAngle = -this.carModel.maxSteeringAngle * Gamepad.getAxes(Controls.STEERING);
+
+        this.turnSteeringWheel();
+
+    }
+
     private shift() {
+        
+        let showGear = Gamepad.isDown(Controls.CLUTCH);
+        this.gearDisplay.setAttribute('visible', ""+showGear);
+        this.gearIndicator.setAttribute('visible', ""+showGear);
+
         if (!Gamepad.isDown(Controls.CLUTCH))
             return;
 
@@ -96,11 +117,6 @@ export class Car extends Entity {
     }
 
     private updateGear() {
-        console.log(this.currentGear);
-        this.updateGearUI();
-    }
-
-    updateGearUI() {
         let position = this.gearIndicatorMap[this.currentGear];
         this.gearIndicator.setAttribute('position', position);
     }
@@ -108,6 +124,47 @@ export class Car extends Entity {
     private turnSteeringWheel() {
         let axisValue = Gamepad.getAxes(Controls.STEERING);
         (<any>this.steeringWheel).object3D.rotation.z = axisValue * 90 / 180 * Math.PI;
+    }
+
+    private simpleSpeed = 0;
+    private simplePhysics() {
+
+        const gearAcceleration:{[gear in Gears]:number} = {
+            [Gears.REVERSE]: -10,
+            [Gears.NEUTRAL]: 0,
+            [Gears.FIRST]: 10,
+            [Gears.SECOND]: 8,
+            [Gears.THIRD]: 5,
+            [Gears.FOURTH]: 3,
+            [Gears.FIFTH]: 1,
+        }
+
+        const gearTopSpeed:{[gear in Gears]:number} = {
+            [Gears.REVERSE]: 1000,
+            [Gears.NEUTRAL]: 1000000,
+            [Gears.FIRST]: 1000,
+            [Gears.SECOND]: 1700,
+            [Gears.THIRD]: 3000,
+            [Gears.FOURTH]: 4000,
+            [Gears.FIFTH]: 5000,
+        }
+
+        const brakingAcceleration = 15; // m/s2
+        const maxSteering = 1 / 180*Math.PI; // rad/s
+
+        if (this.velocity.magnitude() > 0)
+            this.rotation.y -= maxSteering * Gamepad.getAxes(Controls.STEERING);
+
+        let acceleration = gearAcceleration[this.currentGear] * Gamepad.getAxes(Controls.ACCELERATE);
+        let braking = brakingAcceleration * Gamepad.getAxes(Controls.BRAKE);
+        this.simpleSpeed += (acceleration - braking);
+
+        this.simpleSpeed = Math.min(this.simpleSpeed, gearTopSpeed[this.currentGear]);
+        this.simpleSpeed = Math.max(this.simpleSpeed, 0);
+
+        let directionVector = new Vector3( -Math.sin(this.rotation.y), 0, -Math.cos(this.rotation.y) );
+        this.velocity = directionVector.mulNum( this.simpleSpeed * World.dt );
+
     }
 
     // https://asawicki.info/Mirror/Car%20Physics%20for%20Games/Car%20Physics%20for%20Games.html
@@ -128,9 +185,9 @@ export class Car extends Entity {
 
         // Weight transfer
         let totalWeight = this.carModel.mass * Physics.GRAVITY; // W = M * g
-        let frontPostition = this.carModel.centerOfGravity.y + this.carModel.frontWheelPosition.y; // c
-        let rearPostition = this.carModel.centerOfGravity.y + this.carModel.rearWheelPosition.y; // d
-        let wheelBase = frontPostition + rearPostition; // L
+        let frontPostition = this.carModel.centerOfGravity.z + this.carModel.frontWheelPosition.z; // c
+        let rearPostition = this.carModel.centerOfGravity.z + this.carModel.rearWheelPosition.z; // d
+        let wheelBase = rearPostition - frontPostition; // L
         let frontScalar = frontPostition / wheelBase; // c/L
         let rearScalar = rearPostition / wheelBase; // d/L
         let frontWeight = frontScalar * totalWeight - (this.carModel.centerOfGravity.y / wheelBase)*this.carModel.mass * this.acceleration; // (c/L)*W - (h/L)*M*a
@@ -176,14 +233,22 @@ export class Car extends Entity {
 
         }
 
+        // Turning
+        let turnCircleRadius = wheelBase / Math.sin(this.steeringAngle); // R = L / sin(delta)
+        let angularVelocity = this.velocity.magnitude() / turnCircleRadius; // w = v / R
+    
+        let velocityAngle = this.rotation.eulerAngleFromDirection().y;
+        let sideslipAngle = velocityAngle - this.steeringAngle;
+        let lateralForce = this.carModel.corneringStiffness * sideslipAngle;
+
+        // Apply forces
         let acceleration = longtitudinalForce.divNum(this.carModel.mass);
         this.velocity = this.velocity.add( acceleration.mulNum(World.dt) );
         this.acceleration = acceleration.magnitude();
 
-        this.debugText.setAttribute("value", ""+
-            this.velocity.magnitude() + "\nkm/h"
-        );
-
+        if (!isNaN(angularVelocity)) {
+            this.rotation.y += angularVelocity * World.dt;
+        }
 
     }
 
