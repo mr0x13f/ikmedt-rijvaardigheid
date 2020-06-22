@@ -90,7 +90,7 @@ export class Car extends Entity {
     private dashboard() {
 
         const arrowDegreesPerKmh = 1.35;
-        let ms = this.velocity.magnitude();
+        let ms = this.velocity.magnitude() / this.velocityMultiplier;
         let kmh = ms / 1000 * 60 * 60;
         this.speedometerArrow.object3D.rotation.z = (135 - kmh * arrowDegreesPerKmh) / 180 * Math.PI;
 
@@ -136,6 +136,7 @@ export class Car extends Entity {
     }
 
     private simpleSpeed = 0;
+    private readonly velocityMultiplier = 2;
     private simplePhysics() {
 
         const gearAcceleration:{[gear in Gears]:number} = {
@@ -161,9 +162,7 @@ export class Car extends Entity {
         const friction = 5;
         const brakingAcceleration = 10; // m/s2
         const maxSteering = 1 / 180*Math.PI; // rad/s
-        const velocityMultiplier = 2;
-
-        this.velocity = this.velocity.divNum(velocityMultiplier);
+        this.velocity = this.velocity.divNum(this.velocityMultiplier);
 
         if (this.velocity.magnitude() > 0)
             this.rotation.y -= maxSteering * Gamepad.getAxes(Controls.STEERING);
@@ -182,7 +181,7 @@ export class Car extends Entity {
         let directionVector = new Vector3( -Math.sin(this.rotation.y), 0, -Math.cos(this.rotation.y) );
         this.velocity = directionVector.mulNum( this.simpleSpeed * World.dt );
 
-        this.velocity = this.velocity.mulNum(velocityMultiplier);
+        this.velocity = this.velocity.mulNum(this.velocityMultiplier);
 
     }
 
