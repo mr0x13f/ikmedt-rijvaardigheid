@@ -69,10 +69,7 @@ export class Car extends Entity {
         this.dashboard();
         this.simplePhysics()
         //this.physics();
-
-        this.debugText.setAttribute("value", ""+
-            this.velocity.magnitude()/ 1000 * 60 * 60 + "\nkm/h"
-        );
+        
     }
 
     public toggleHeadlights() {
