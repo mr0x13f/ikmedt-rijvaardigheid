@@ -5,9 +5,9 @@ import { SimulationScene } from "./scenes/SimulationScene";
 window.onload = () => {
 
     Gamepad.init();
-    // Start menu scene
-    //MenuScene.show();
 
-    SimulationScene.show();
+    // Start menu scene
+    MenuScene.show();
+    //SimulationScene.show();
 
 };

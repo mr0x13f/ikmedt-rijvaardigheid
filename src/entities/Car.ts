@@ -161,12 +161,17 @@ export class Car extends Entity {
         const friction = 5;
         const brakingAcceleration = 10; // m/s2
         const maxSteering = 1 / 180*Math.PI; // rad/s
+        const velocityMultiplier = 2;
+
+        this.velocity = this.velocity.divNum(velocityMultiplier);
 
         if (this.velocity.magnitude() > 0)
             this.rotation.y -= maxSteering * Gamepad.getAxes(Controls.STEERING);
 
         let acceleration = gearAcceleration[this.currentGear] * Gamepad.getAxes(Controls.ACCELERATE);
         let braking = brakingAcceleration * Gamepad.getAxes(Controls.BRAKE);
+        if (Gamepad.isDown(Controls.CLUTCH))
+            acceleration = 0;
         if (acceleration == 0)
             braking += friction;
         this.simpleSpeed += (acceleration - braking);
@@ -176,6 +181,8 @@ export class Car extends Entity {
 
         let directionVector = new Vector3( -Math.sin(this.rotation.y), 0, -Math.cos(this.rotation.y) );
         this.velocity = directionVector.mulNum( this.simpleSpeed * World.dt );
+
+        this.velocity = this.velocity.mulNum(velocityMultiplier);
 
     }
 
