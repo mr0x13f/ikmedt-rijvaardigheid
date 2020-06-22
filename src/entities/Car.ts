@@ -16,6 +16,7 @@ export class Car extends Entity {
     private debugText:HTMLElement;
     private gearIndicator:HTMLElement;
     private gearDisplay:HTMLElement;
+    private speedometerArrow:any;
 
     private isHeadlightsOn:boolean = false;
     private direction:Vector3 = new Vector3();
@@ -49,6 +50,7 @@ export class Car extends Entity {
         this.debugText = <HTMLElement> document.getElementById("js--debug-text");
         this.gearIndicator = <HTMLElement> document.getElementById("js--gear-indicator");
         this.gearDisplay = <HTMLElement> document.getElementById("js--gear-display");
+        this.speedometerArrow = document.getElementById("js--speedometer-arrow");
 
         this.velocity = new Vector3(0,0,0);
         this.direction = new Vector3(0,0,-1);
@@ -64,11 +66,12 @@ export class Car extends Entity {
 
         this.steer();
         this.shift();
+        this.dashboard();
         this.simplePhysics()
         //this.physics();
 
         this.debugText.setAttribute("value", ""+
-            this.velocity.magnitude() + "\nkm/h"
+            this.velocity.magnitude()/ 1000 * 60 * 60 + "\nkm/h"
         );
     }
 
@@ -85,6 +88,15 @@ export class Car extends Entity {
     private updateHeadlights() {
         this.headlightLeft.setAttribute("visible", ""+this.isHeadlightsOn);
         this.headlightRight.setAttribute("visible", ""+this.isHeadlightsOn);
+    }
+
+    private dashboard() {
+
+        const arrowDegreesPerKmh = 1.35;
+        let ms = this.velocity.magnitude();
+        let kmh = ms / 1000 * 60 * 60;
+        this.speedometerArrow.object3D.rotation.z = (135 - kmh * arrowDegreesPerKmh) / 180 * Math.PI;
+
     }
 
     private steer() {
