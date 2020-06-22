@@ -69,7 +69,7 @@ export class Car extends Entity {
         this.dashboard();
         this.simplePhysics()
         //this.physics();
-        
+
     }
 
     public toggleHeadlights() {
@@ -151,11 +151,11 @@ export class Car extends Entity {
         const gearTopSpeed:{[gear in Gears]:number} = {
             [Gears.REVERSE]: 1000,
             [Gears.NEUTRAL]: 1000000,
-            [Gears.FIRST]: 1000,
-            [Gears.SECOND]: 1700,
-            [Gears.THIRD]: 3000,
-            [Gears.FOURTH]: 4000,
-            [Gears.FIFTH]: 5000,
+            [Gears.FIRST]: 500,
+            [Gears.SECOND]: 1000,
+            [Gears.THIRD]: 2000,
+            [Gears.FOURTH]: 3000,
+            [Gears.FIFTH]: 4000,
         }
 
         const friction = 5;
