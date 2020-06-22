@@ -22,6 +22,8 @@ export class RX7 implements CarModel{
     readonly wheelRadius = 0.3265;
     readonly frontWheelPosition = new Vector3(); // TODO
     readonly rearWheelPosition = new Vector3(); // TODO
+    readonly maxSteeringAngle = 40 /180*Math.PI;
+    readonly corneringStiffness = -5.20;
 
     // Weight Transfer
     readonly mass = 1560;

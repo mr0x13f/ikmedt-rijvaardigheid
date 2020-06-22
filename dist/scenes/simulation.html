@@ -52,12 +52,15 @@
             material="color: #404040">
 
             <a-entity
-                id="js--car-steering-wheel"
-                obj-model="obj: #skyline-steering-wheel;"
-                material="color: #404040"
                 position="-25.5 62 28"
-                rotation="0 0 0"
-                ></a-entity>
+                rotation="20 0 0">
+                <a-entity
+                    id="js--car-steering-wheel"
+                    obj-model="obj: #skyline-steering-wheel;"
+                    material="color: #404040"
+                    rotation="0 0 0"
+                    ></a-entity>
+            </a-entity>
 
             <a-image
                 src="assets/hud/shifter.png"
@@ -74,6 +77,24 @@
                 radius="0.5"
                 position="-38 90 35"
                 ></a-sphere>
+
+        </a-entity>
+
+
+        <a-entity
+            scale="0.9 0.9 0.9"
+            position="0.515 1.32 -0.85"
+            rotation="0 0 0" >
+
+            <a-entity
+                obj-model="obj: #speedometer-obj;"
+                material="src: #speedometer-png;"
+                ></a-entity>
+
+            <a-entity
+                obj-model="obj: #speedometer-arrow-obj;"
+                material="color: #FF0000;"
+                ></a-entity>
 
         </a-entity>
 
