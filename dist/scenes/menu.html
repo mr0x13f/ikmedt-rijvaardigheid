@@ -38,11 +38,34 @@
         ></a-entity>
 
     <a-plane
-        position="-2 2 -1.8"
+        id="js--circuit-day"
+        position="-2 3 -1.8"
         rotation="0 40 0"
-        scale="1.5 1.5 0"
-        material="src: #menu-circuit;"
-        ></a-plane>
+        scale="1.5 1.5 1"
+        material="src: #menu-circuit-day;">
+
+        <a-plane
+            id="js--circuit-day-outline"
+            position="0 0 -0.01"
+            scale="1.1 1.1 1"
+            material="color: #FF0000;"
+            ></a-plane>
+    </a-plane>
+
+    <a-plane
+        id="js--circuit-night"
+        position="-2 1 -1.8"
+        rotation="0 40 0"
+        scale="1.5 1.5 1"
+        material="src: #menu-circuit-night;">
+
+        <a-plane
+            id="js--circuit-night-outline"
+            position="0 0 -0.01"
+            scale="1.1 1.1 1"
+            material="color: #FF0000;"
+            ></a-plane>
+    </a-plane>
 
     <a-plane
         position="0 2 -2"
