@@ -16,9 +16,12 @@ export abstract class Entity {
 
     constructor(id:string|null) {
 
-        if (id) { // Koppelt de entity aan een bepaalde HTML element
+        if (id) {
             this.id = id;
             this.element = <HTMLElement> document.getElementById(id);
+        }
+
+        if (this.element) { // Koppelt de entity aan een bepaalde HTML element
             this.object3D = (<any>this.element).object3D;
 
             // Pak de a-frame positie en rotatie
@@ -54,12 +57,14 @@ export abstract class Entity {
         this.position = this.position.add( this.velocity.mulNum(World.dt) );
 
         // Kopieer onze position en rotation naar a-frame
-        this.object3D.position.x = this.position.x;
-        this.object3D.position.y = this.position.y;
-        this.object3D.position.z = this.position.z;
-        this.object3D.rotation.x = this.rotation.x;
-        this.object3D.rotation.y = this.rotation.y;
-        this.object3D.rotation.z = this.rotation.z;
+        if (this.object3D) {
+            this.object3D.position.x = this.position.x;
+            this.object3D.position.y = this.position.y;
+            this.object3D.position.z = this.position.z;
+            this.object3D.rotation.x = this.rotation.x;
+            this.object3D.rotation.y = this.rotation.y;
+            this.object3D.rotation.z = this.rotation.z;
+        }
 
     }
 
