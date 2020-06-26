@@ -73,6 +73,7 @@ export class Car extends Entity {
     }
 
     public toggleHeadlights() {
+        alert("HEADLIGHTS");
         this.isHeadlightsOn = !this.isHeadlightsOn;
         this.updateHeadlights();
     }

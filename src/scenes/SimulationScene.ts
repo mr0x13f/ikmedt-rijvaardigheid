@@ -10,6 +10,8 @@ export class SimulationScene extends Scene {
     }
 
     protected static load(data:any) {
+        
+        alert("SIMULATIE BEGONNEN");
 
         let car:Car = new Car("js--car", new GTRSkyline()); // Verbind een Car entity aan #car
         car.setHeadlights(false);
