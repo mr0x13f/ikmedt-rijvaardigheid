@@ -82,8 +82,9 @@ export module Gamepad {
         // Find matching controller mapping
         let mapping:ControllerMapping|null = null;
         for (let possibleMapping of controllerMappings)
-            if (gamepadEvent.gamepad.id.search(possibleMapping.NAME) != -1)
-                mapping = possibleMapping;
+            for (let names of possibleMapping.NAMES)
+                if (gamepadEvent.gamepad.id.search(name) != -1)
+                    mapping = possibleMapping;
 
         // Deze controller heeft geen geregistreerde mapping
         if (!mapping) {
@@ -94,7 +95,7 @@ export module Gamepad {
         currentGamepad = gamepadEvent.gamepad;
         currentMapping = mapping;
 
-        console.log("Controller mapping applied: " + mapping.NAME);
+        console.log("Controller mapping applied: " + mapping.NAMES[0]);
     }
 
     function onGamepadDisconnected(event:Event) {

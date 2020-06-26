@@ -15,11 +15,13 @@ import { MultipleInput } from "../input/MultipleInput";
         Switch Joy Con
         Stadia Controller
         NVIDIA Controller
+
+    Every browser reports controller names differently, so there's a good chance some controllers won't work on some browsers.
 */
 
 export class StandardGamepad implements ControllerMapping {
 
-    public readonly NAME = "STANDARD GAMEPAD";
+    public readonly NAMES = ["STANDARD GAMEPAD", "Microsoft X-box 360 pad", "Wireless Controller"];
 
     public readonly MAPPING = {
 

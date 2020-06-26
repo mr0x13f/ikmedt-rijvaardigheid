@@ -10,11 +10,14 @@ import { HairTriggerInput } from "../input/HairTriggerInput";
 
     The joysticks only reach about 0.75, zo they have quite a low max deadzone.
     The triggers are axis that go from -1 to 1 instead of the more standard 0 to 1, so the trigger values are normalized.
+    
+    Every browser reports controller names differently,
+    so there's a good chance some controllers won't work on some browsers.
 */
 
 export class GameCubeMayflash implements ControllerMapping {
 
-    public readonly NAME = "MAYFLASH GameCube Controller Adapter";
+    public readonly NAMES = ["MAYFLASH GameCube Controller Adapter"];
 
     public readonly MAPPING = {
 
