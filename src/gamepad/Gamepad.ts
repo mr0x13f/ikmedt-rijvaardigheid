@@ -82,7 +82,7 @@ export module Gamepad {
         // Find matching controller mapping
         let mapping:ControllerMapping|null = null;
         for (let possibleMapping of controllerMappings)
-            for (let names of possibleMapping.NAMES)
+            for (let name of possibleMapping.NAMES)
                 if (gamepadEvent.gamepad.id.search(name) != -1)
                     mapping = possibleMapping;
 
