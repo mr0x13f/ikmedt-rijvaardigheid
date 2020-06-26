@@ -114,10 +114,13 @@
             visible=false
             ></a-entity>
 
-        <a-camera
-            position="0.6 1.7 -0.1"
-            wasd-controls-enabled=true
-            ></a-camera>
+        <a-entity
+            position="0.6 0 -0.1">
+            <a-camera
+                position="0 1.7 0">
+                wasd-controls-enabled=true
+                ></a-camera>
+        </a-entity>
 
         <a-text
             id="js--debug-text"
