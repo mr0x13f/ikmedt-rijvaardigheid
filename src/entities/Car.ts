@@ -168,8 +168,8 @@ export class Car extends Entity {
             this.rotation.y -= maxSteering * Gamepad.getAxes(Controls.STEERING);
 
         let acceleration = gearAcceleration[this.currentGear] * Gamepad.getAxes(Controls.ACCELERATE);
-        let braking = brakingAcceleration * Gamepad.getAxes(Controls.BRAKE);
-        if (Gamepad.isDown(Controls.CLUTCH))
+        let braking = brakingAcceleration * (Gamepad.isDown(Controls.HANDBRAKE) ? 1 : Gamepad.getAxes(Controls.BRAKE));
+        if (Gamepad.isDown(Controls.CLUTCH) || Gamepad.isDown(Controls.HANDBRAKE))
             acceleration = 0;
         if (acceleration == 0)
             braking += friction;
