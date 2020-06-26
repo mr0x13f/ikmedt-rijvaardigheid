@@ -16,12 +16,13 @@ import { MultipleInput } from "../input/MultipleInput";
         Stadia Controller
         NVIDIA Controller
 
-    Every browser reports controller names differently, so there's a good chance some controllers won't work on some browsers.
+    Every browser reports controller names differently,
+    so there's a good chance some controllers won't work on some browsers.
 */
 
 export class StandardGamepad implements ControllerMapping {
 
-    public readonly NAMES = ["STANDARD GAMEPAD", "Microsoft X-box 360 pad", "Wireless Controller"];
+    public readonly NAMES = ["STANDARD GAMEPAD", "Microsoft X-Box 360 pad", "Wireless Controller"];
 
     public readonly MAPPING = {
 
